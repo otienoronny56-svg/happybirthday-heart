@@ -469,8 +469,6 @@ h1, h2, .elegant-text {
     animation: float-soft 3s infinite ease-in-out;
 }
 
-}
-
 /* Map Cinematic Overlay */
 .map-dim-overlay {
     position: absolute;
@@ -488,10 +486,10 @@ h1, h2, .elegant-text {
 .cinematic-text-container {
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    text-align: center;
+    left: 5%; /* Shifted to left */
+    transform: translateY(-50%);
+    width: 40%; /* Narrower to stay on the left */
+    text-align: left; /* Aligned left */
     z-index: 10;
     pointer-events: none;
     font-family: "Comic Sans MS", "Comic Sans", cursive;
@@ -500,19 +498,16 @@ h1, h2, .elegant-text {
 .cinematic-word {
     display: block;
     color: var(--ivory-white);
-    font-size: 2.5rem;
+    font-size: 1.5rem; /* Reduced font size */
     opacity: 0;
-    margin-bottom: 1.5rem;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    margin-bottom: 1.2rem;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
     filter: blur(5px);
 }
 
 @keyframes float-soft {
-    font-family: 'Playfair Display', serif;
-    font-size: 14px;
-    fill: var(--rose-gold);
-    font-weight: bold;
-    text-anchor: middle;
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 
 .sparkle {
