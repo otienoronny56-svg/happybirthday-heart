@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Precious Immah | A Birthday Journey</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    
+    <!-- Lenis & GSAP -->
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.2/dist/lenis.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Landing Screen -->
+    <div id="landing" class="landing-overlay" style="background-image: url('assets/landing_bg.png'); background-size: cover; background-position: center;">
+        <div class="landing-content">
+            <h1 class="elegant-text">Hie Precious...</h1>
+            <p class="sub-text">Are you ready for your surprise journey?</p>
+            <div class="button-group">
+                <button id="start-btn" class="fluid-btn">Open My Gift</button>
+                <button id="no-btn" class="secondary-btn">No</button>
+            </div>
+        </div>
+        <!-- Surprise Containers -->
+        <div id="emoji-canvas" class="emoji-container"></div>
+        <div id="floating-msgs" class="floating-messages"></div>
+        <div id="arrow-pointer" class="arrow-container"></div>
+        
+        <div class="flower-decoration top-left"></div>
+        <div class="flower-decoration bottom-right"></div>
+    </div>
+
+    <!-- Main Content (Hidden initially) -->
+    <main id="main-content" class="hidden">
+        <!-- Day 1: April 13 -->
+        <section id="day-1" class="chapter locked" data-date="2026-04-13">
+            <div class="chapter-content">
+                <span class="date-label">April 13</span>
+                <h2>The Journey Begins</h2>
+                
+                <!-- Horizontal Memory Journey -->
+                <div class="journey-container">
+                    <svg class="clothesline-svg" viewBox="0 0 1200 100" preserveAspectRatio="none">
+                        <path d="M0,20 Q600,60 1200,20" class="rope-path" />
+                    </svg>
+                    
+                    <div class="journey-track">
+                        <!-- Original Set -->
+                        <div class="polaroid-item hang-1">
+                            <div class="peg"></div>
+                            <div class="polaroid-frame">
+                                <img src="memory_1_laughter_1775913120160.png" alt="Happy Moments" class="memory-img">
+                                <p class="polaroid-caption">Where our hearts met. ✨</p>
+                            </div>
+                        </div>
+                        <div class="polaroid-item hang-2">
+                            <div class="peg"></div>
+                            <div class="polaroid-frame">
+                                <img src="memory_2_adventure_1775913147096.png" alt="Sunset Adventure" class="memory-img">
+                                <p class="polaroid-caption">The laughter we shared. 🥂</p>
+                            </div>
+                        </div>
+                        <div class="polaroid-item hang-3">
+                            <div class="peg"></div>
+                            <div class="polaroid-frame">
+                                <img src="memory_3_cafe_1775913178167.png" alt="Cafe Conversation" class="memory-img">
+                                <p class="polaroid-caption">A moment in time. 🕰️</p>
+                            </div>
+                        </div>
+                        <div class="polaroid-item hang-4">
+                            <div class="peg"></div>
+                            <div class="polaroid-frame">
+                                <img src="memory_4_beach_1775913203259.png" alt="Beach Dusk" class="memory-img">
+                                <p class="polaroid-caption">Our first sunrise. 🌅</p>
+                            </div>
+                        </div>
+                        <div class="polaroid-item hang-5">
+                            <div class="peg"></div>
+                            <div class="polaroid-frame">
+                                <img src="memory_5_roadtrip_1775913230389.png" alt="Road Trip" class="memory-img">
+                                <p class="polaroid-caption">Where it all started. 🌱</p>
+                            </div>
+                        </div>
+
+                        <!-- Duplicate Set for Seamless Loop -->
+                        <div class="polaroid-item hang-1 duplicate">
+                            <div class="peg"></div>
+                            <div class="polaroid-frame">
+                                <img src="memory_1_laughter_1775913120160.png" alt="Happy Moments" class="memory-img">
+                                <p class="polaroid-caption">Where our hearts met. ✨</p>
+                            </div>
+                        </div>
+                        <div class="polaroid-item hang-2 duplicate">
+                            <div class="peg"></div>
+                            <div class="polaroid-frame">
+                                <img src="memory_2_adventure_1775913147096.png" alt="Sunset Adventure" class="memory-img">
+                                <p class="polaroid-caption">The laughter we shared. 🥂</p>
+                            </div>
+                        </div>
+                        <div class="polaroid-item hang-3 duplicate">
+                            <div class="peg"></div>
+                            <div class="polaroid-frame">
+                                <img src="memory_3_cafe_1775913178167.png" alt="Cafe Conversation" class="memory-img">
+                                <p class="polaroid-caption">A moment in time. 🕰️</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Swipe Hint -->
+                    <div class="swipe-hint">
+                        <span>Swipe to explore the journey</span>
+                        <div class="arrow-swipe"></div>
+                    </div>
+                </div>
+
+                <div class="sticker-container day-1-stickers">
+                    <div class="sticker sticker-ashley" id="sticker-ashley">
+                        <img src="ashley_note.png" alt="Note from Ashley">
+                    </div>
+                    
+                    <svg class="sticker-connector" viewBox="0 0 200 100" preserveAspectRatio="none">
+                        <path class="connector-path" d="M10,60 Q100,0 190,40" fill="none" stroke="#bd8749" stroke-width="2" stroke-dasharray="5,5" />
+                    </svg>
+
+                    <div class="sticker sticker-ronny" id="sticker-ronny">
+                        <img src="ronny_note.png" alt="Note from Ronny">
+                    </div>
+                </div>
+                <div id="bush-day-1" class="flower-bush-container"></div>
+                <div class="story-text">
+                    <p>It all started 28 years ago...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Day 2: April 14 (Distance) -->
+        <section id="day-2" class="chapter locked" data-date="2026-04-14">
+            <div class="chapter-content">
+                <span class="day-label">Day 2: April 14</span>
+                <h1 class="chapter-title reveal-text">Distance is Just a Number</h1>
+                
+                <div class="map-container">
+                    <div id="map-dim-overlay" class="map-dim-overlay"></div>
+                    <div id="cinematic-text-container" class="cinematic-text-container">
+                        <!-- Words will be injected here via JS -->
+                    </div>
+
+                    <svg id="connection-map" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice">
+                        <!-- Stylized World Outlines -->
+                        <path class="map-outline" d="M150,100 Q200,80 250,110 T350,100 T450,120 T550,100 T650,130" opacity="0.1" />
+                        <path class="map-outline" d="M100,250 Q200,230 300,260 T500,240 T700,270" opacity="0.1" />
+                        
+                        <!-- Floating Sparkles/Stars -->
+                        <g class="celestial-decor">
+                            <circle cx="120" cy="150" r="2" class="sparkle" />
+                            <circle cx="280" cy="80" r="1.5" class="sparkle" />
+                            <circle cx="200" cy="320" r="2.5" class="sparkle" />
+                            <path d="M140,280 L145,285 L140,290 L135,285 Z" class="sparkle" />
+                        </g>
+                        
+                        <!-- The Connection Arc (Sweeping and Long) -->
+                        <path id="connection-arc" d="M540,320 C350,250 300,100 515,85" fill="none" class="connection-path" />
+                        
+                        <!-- Real Paper Plane -->
+                        <g id="paper-plane" class="paper-plane">
+                            <path d="M0,0 L20,-5 L5,15 Z" fill="#fff" /> <!-- Main wing -->
+                            <path d="M0,0 L20,-5 L15,5 Z" fill="#eee" /> <!-- Side fold -->
+                            <path d="M0,0 L15,5 L5,15 Z" fill="#ddd" /> <!-- Bottom fold -->
+                        </g>
+
+                        <!-- Location Markers -->
+                        <g class="marker kenya" transform="translate(540, 320)">
+                            <circle class="marker-pulse" r="10" />
+                            <circle class="marker-point" r="4" />
+                            <text y="25" class="marker-label">Kenya 🇰🇪</text>
+                        </g>
+                        <g class="marker finland" transform="translate(515, 85)">
+                            <circle class="marker-pulse" r="10" />
+                            <circle class="marker-point" r="4" />
+                            <text y="-20" class="marker-label">Finland 🇫🇮</text>
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="story-text">
+                    <p class="distance-msg"><span id="km-counter">0</span> km of distance, but <span id="mm-counter">7000</span> mm between our hearts.</p>
+                    <p>"You are more than a sister; you are a piece of my heart that lives across the ocean. Every mile between us is filled with love."</p>
+                    <button id="show-message-btn" class="secondary-btn">Tap for a secret note 💌</button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Day 3: April 15 -->
+        <section id="day-3" class="chapter locked" data-date="2026-04-15">
+            <div class="chapter-content">
+                <span class="day-label">Day 3: April 15</span>
+                <h2 class="chapter-title">Precious Moments</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=500" alt="Shared Laughs"></div>
+                    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=500" alt="Joy"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Day 4: April 16 (Birthday) -->
+        <section id="day-4" class="chapter locked" data-date="2026-04-16">
+            <div class="chapter-content">
+                <span class="day-label">The Big Day: April 16</span>
+                <h1 class="birthday-title reveal-text">Happy 28th Birthday, Precious Immah!</h1>
+                
+                <!-- 28 Candles Ritual -->
+                <div id="candle-ritual" class="ritual-container">
+                    <p class="ritual-hint">Touch each flame to blow it out...</p>
+                    <div id="candle-grid" class="candle-grid"></div>
+                    <div id="wish-prompt" class="wish-prompt hidden">
+                        <p>All out! Now, close your eyes and...</p>
+                        <button id="make-a-wish-btn" class="wish-btn">Make a Wish ✨</button>
+                    </div>
+                </div>
+
+                <div id="final-celebration" class="celebration-content hidden">
+                    <div class="celebration-hero">
+                        <img src="assets/cake.png" alt="Birthday Cake" class="zoom-img">
+                    </div>
+                    <!-- Procedural Celebration Bush Day 4 -->
+                    <div class="flower-bush-container" id="bush-day-4"></div>
+                    <div class="final-letter">
+                        <p>My dearest sister,</p>
+                        <p>May your 28th year be as brilliant as the northern lights and as warm as the Kenyan sun. We love you so much!</p>
+                        <p class="signature">With love, Ronny & [Your Boyfriend's Name]</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Music Player -->
+    <div class="music-player">
+        <button id="music-toggle" class="music-btn">
+            <span class="icon">♪</span>
+            <span class="label">Playing Soft Beats...</span>
+        </button>
+        <audio id="bg-music" loop>
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- Secret Note Overlay -->
+    <div id="secret-note" class="secret-overlay">
+        <div class="note-container">
+            <span class="close-note">&times;</span>
+            <div id="unfold-hint" class="unfold-hint">Tap to unfold...</div>
+            <div class="note-paper">
+                <div class="note-panel panel-top">
+                    <p>No matter the coordinate,</p>
+                </div>
+                <div class="note-panel panel-mid">
+                    <p>Happy Birthday to My Favorite Sunflower! 🌻</p>
+                </div>
+                <div class="note-panel panel-bot">
+                    <p>May your light always guide us. - Love, Ashley</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="lantern-container" class="lantern-container"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.2/dist/lenis.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
