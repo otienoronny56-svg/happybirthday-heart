@@ -1,12 +1,16 @@
 :root {
-    --primary-color: #121212; /* Deep Charcoal */
-    --accent-color: #f4c1bc; /* Blush Pink */
-    --rose-gold: #bd8749;
-    --ivory-white: #f9f6f2; /* Warm Ivory */
-    --text-color: #f9f6f2;
-    --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(189, 135, 73, 0.3);
-    --glass-blur: blur(25px);
+    --primary-color: #fffde7; /* Creamy Sun Yellow */
+    --accent-color: #fbc02d; /* Sunflower Gold */
+    --rose-gold: #8d6e63; /* Deep Bronze-Rose for contrast on light bg */
+    --sunflower-main: #f9a825; /* Deeper Sunflower for legibility */
+    --sunflower-gold: #ffeb3b; 
+    --sunflower-glow: rgba(249, 168, 37, 0.4);
+    --ivory-white: #ffffff;
+    --text-color: #3e2723; /* Espresso Brown for high-end contrast */
+    --text-muted: #6d4c41;
+    --glass-bg: rgba(255, 255, 255, 0.7); /* Brighter, more opaque frosted glass */
+    --glass-border: rgba(189, 135, 73, 0.4);
+    --glass-blur: blur(20px);
     --transition-smooth: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
@@ -20,8 +24,9 @@ body {
     font-family: 'Montserrat', sans-serif;
     background-color: var(--primary-color);
     background-image: 
-        radial-gradient(circle at 10% 20%, rgba(189, 135, 73, 0.05) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(244, 193, 188, 0.05) 0%, transparent 40%);
+        radial-gradient(circle at 10% 20%, rgba(251, 192, 45, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(249, 168, 37, 0.1) 0%, transparent 50%),
+        url("https://www.transparenttextures.com/patterns/natural-paper.png"); /* Subtle texture */
     color: var(--text-color);
     overflow-x: hidden;
     line-height: 1.6;
@@ -38,13 +43,30 @@ h1, h2, .elegant-text {
     left: 0;
     width: 100%;
     height: 100vh;
-    background: radial-gradient(circle at center, #1c1c1c 0%, #121212 100%);
+    background-image: 
+        radial-gradient(circle at center, rgba(255, 250, 220, 0.2) 0%, rgba(255, 240, 180, 0.5) 100%),
+        url('assets/sunflower_landing_bg.png');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay; /* Soft blend to keep vibrancy without hiding flowers */
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
     transition: var(--transition-smooth);
     overflow: hidden;
+}
+
+.landing-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, var(--sunflower-glow) 0%, transparent 70%);
+    opacity: 0.3;
+    pointer-events: none;
 }
 
 .landing-overlay.fade-out {
@@ -59,39 +81,53 @@ h1, h2, .elegant-text {
 }
 
 .elegant-text {
-    font-size: 4rem;
-    color: var(--rose-gold);
-    margin-bottom: 1rem;
-    text-shadow: 0 0 30px rgba(189, 135, 73, 0.4);
+    font-size: 5rem; /* Bigger for Sunflower */
+    color: var(--sunflower-main);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 4px 10px rgba(62, 39, 35, 0.15), 0 0 30px rgba(255, 235, 59, 0.3);
     opacity: 0;
+    letter-spacing: -1px;
 }
 
 .sub-text {
-    font-size: 1.2rem;
-    color: #a8a29e;
+    font-size: 1.25rem;
+    color: var(--text-color); /* Deeper espresso brown */
+    font-weight: 700; /* Extra bold for visibility */
     margin-bottom: 2rem;
     opacity: 0;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8); /* Light lift for readability */
 }
 
 .fluid-btn {
-    padding: 1rem 2.5rem;
-    font-size: 1.1rem;
-    border: 2px solid var(--rose-gold);
-    background: transparent;
-    color: var(--rose-gold);
-    cursor: pointer;
+    padding: 1.2rem 3.5rem;
+    font-size: 1.2rem;
+    border: none;
+    background: linear-gradient(135deg, var(--sunflower-main) 0%, var(--sunflower-gold) 100%);
+    color: #3e2723;
+    font-weight: 700;
     border-radius: 50px;
     font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
+    font-weight: 700;
     transition: var(--transition-smooth);
     opacity: 0;
+    box-shadow: 0 10px 30px rgba(255, 235, 59, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .fluid-btn:hover {
-    background: var(--rose-gold);
-    color: white;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(189, 135, 73, 0.2);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(255, 235, 59, 0.5);
+    filter: brightness(1.1);
+}
+
+@keyframes pulse-gold {
+    0%, 100% { box-shadow: 0 10px 30px rgba(255, 235, 59, 0.3); }
+    50% { box-shadow: 0 10px 50px rgba(255, 235, 59, 0.6); }
+}
+
+.fluid-btn {
+    animation: pulse-gold 3s infinite ease-in-out;
 }
 
 .button-group {
@@ -102,6 +138,56 @@ h1, h2, .elegant-text {
     margin-top: 1rem;
     position: relative;
     z-index: 100;
+}
+
+/* Decorative Stickers */
+.landing-sticker {
+    position: absolute;
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0;
+}
+
+.cake-sticker {
+    width: 250px;
+    height: auto;
+    top: 50%;
+    right: -250px;
+    transform: translateY(-50%) rotate(10deg);
+    mix-blend-mode: multiply;
+    opacity: 1 !important;
+    filter: drop-shadow(0 0 20px var(--sunflower-glow));
+    animation: heartbeat 3s infinite ease-in-out;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: translateY(-50%) rotate(10deg) scale(1); filter: drop-shadow(0 0 15px var(--sunflower-glow)); }
+    50% { transform: translateY(-50%) rotate(10deg) scale(1.05); filter: drop-shadow(0 0 35px var(--sunflower-main)); }
+}
+
+/* Flower Decorations (Stickers) */
+.flower-decoration {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-image: url('assets/sunflower_landing_bg.png'); /* Using the landing bg as a sticker source */
+    background-size: cover;
+    z-index: 5;
+    opacity: 0.8;
+    filter: drop-shadow(0 0 15px var(--sunflower-glow));
+    animation: heartbeat 4s infinite ease-in-out;
+}
+
+.top-left {
+    top: -50px;
+    left: -50px;
+    transform: rotate(-15deg);
+}
+
+.bottom-right {
+    bottom: -50px;
+    right: -50px;
+    transform: rotate(15deg);
 }
 
 .secondary-btn {
@@ -120,6 +206,58 @@ h1, h2, .elegant-text {
 .secondary-btn:hover {
     color: var(--rose-gold);
     border-color: var(--rose-gold);
+}
+
+/* Landing Decorations */
+.flower-decoration {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    background-color: var(--sunflower-main);
+    opacity: 0.15;
+    filter: blur(60px);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.top-left {
+    top: -50px;
+    left: -50px;
+}
+
+.bottom-right {
+    bottom: -50px;
+    right: -50px;
+}
+
+/* Petal Rain */
+.petal-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+    overflow: hidden;
+}
+
+.petal {
+    position: absolute;
+    background-color: var(--sunflower-main);
+    border-radius: 80% 10% 80% 50%;
+    opacity: 0.8;
+    pointer-events: none;
+    box-shadow: 0 0 10px var(--sunflower-glow);
+}
+
+@media (max-width: 480px) {
+    .flower-decoration {
+        width: 150px;
+        height: 150px;
+        filter: blur(25px);
+    }
 }
 
 /* Floating Messages Surprise */
@@ -246,7 +384,7 @@ h1, h2, .elegant-text {
     -webkit-backdrop-filter: var(--glass-blur);
     border: 1px solid var(--glass-border);
     border-radius: 40px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    box-shadow: 0 15px 45px rgba(62, 39, 35, 0.1); /* Lighter, warmer shadow */
 }
 
 .day-label {
@@ -261,8 +399,8 @@ h1, h2, .elegant-text {
 .chapter-title {
     font-size: 3.5rem;
     margin-bottom: 2rem;
-    color: var(--rose-gold);
-    text-shadow: 0 0 20px rgba(189, 135, 73, 0.4); /* Dreamy Glow */
+    color: var(--sunflower-main);
+    text-shadow: 0 4px 15px rgba(62, 39, 35, 0.1); /* Warmer Glow */
 }
 
 /* Memory Journey (Horizontal Clothesline) */
@@ -348,11 +486,10 @@ h1, h2, .elegant-text {
 }
 
 .polaroid-frame {
-    background: rgba(255, 255, 255, 0.25); /* More vibrant for dark mode */
-    backdrop-filter: blur(15px);
-    padding: 20px 20px 55px 20px;
-    border: 1px solid rgba(255,255,255,0.3);
-    box-shadow: 0 40px 80px rgba(0,0,0,0.7);
+    background: #ffffff;
+    padding: 20px 20px 60px 20px;
+    border: 1px solid rgba(189, 135, 73, 0.2);
+    box-shadow: 0 20px 50px rgba(62, 39, 35, 0.2);
     width: 320px; 
     transition: var(--transition-smooth);
 }
@@ -376,12 +513,13 @@ h1, h2, .elegant-text {
 }
 
 .polaroid-caption {
-    font-family: 'Dancing Script', cursive;
-    font-size: 1.5rem;
-    color: #f9f6f2; /* Brighter Ivory for dark mode */
-    margin-top: 15px;
+    font-family: 'Comic Neue', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--text-color);
+    margin-top: 20px;
     text-align: center;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    letter-spacing: -0.5px;
 }
 
 .swipe-hint {
@@ -399,7 +537,18 @@ h1, h2, .elegant-text {
     50% { opacity: 1; }
 }
 
-/* Day 2: Connection Map */
+/* Day 2: Connection Map Experience */
+.distance-experience {
+    min-height: 80vh; 
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* Removed overflow: hidden so plane doesn't clip */
+}
+
 .map-container {
     width: 100%;
     max-width: 800px;
@@ -410,6 +559,7 @@ h1, h2, .elegant-text {
     border: 1px solid rgba(189, 135, 73, 0.2);
     box-shadow: 0 10px 40px rgba(0,0,0,0.05);
     overflow: hidden;
+    position: relative; /* CRITICAL: Required for absolute cinematic overlay */
     pointer-events: none; /* Let clicks pass through to the button below */
 }
 
@@ -417,6 +567,8 @@ h1, h2, .elegant-text {
     width: 100%;
     height: auto;
     display: block;
+    position: relative;
+    z-index: 55; /* Keeps the map & plane bright above the dark overlay */
     pointer-events: none; /* Safety first */
 }
 
@@ -427,32 +579,39 @@ h1, h2, .elegant-text {
 }
 
 .connection-path {
-    stroke: var(--rose-gold);
-    stroke-width: 2;
-    stroke-dasharray: 8, 8;
-    filter: drop-shadow(0 0 8px rgba(189, 135, 73, 0.5));
+    stroke: var(--sunflower-gold);
+    stroke-width: 16; 
+    stroke-dasharray: 10 20;
+    filter: drop-shadow(0 0 15px rgba(251, 192, 45, 0.6));
+    opacity: 0.8;
 }
 
 .paper-plane {
-    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
+    filter: drop-shadow(0 0 15px rgba(255, 235, 59, 0.9));
+    transform: scale(3); /* Nice, realistic scale */
+    transform-origin: center center;
+    pointer-events: none;
 }
 
 .marker-point {
-    fill: var(--rose-gold);
+    fill: var(--sunflower-main);
+    r: 12px; 
+    filter: drop-shadow(0 0 10px var(--sunflower-glow));
 }
 
 .marker-pulse {
-    fill: var(--rose-gold);
-    opacity: 0.3;
+    fill: var(--sunflower-gold);
+    opacity: 0.5;
     animation: pulse-ring 2s infinite;
 }
 
 .marker-label {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    fill: var(--text-color);
+    font-family: 'Montserrat', 'Inter', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    fill: var(--sunflower-main);
     text-anchor: middle;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8)); /* Sharp contrast */
 }
 
 @keyframes pulse-ring {
@@ -469,41 +628,7 @@ h1, h2, .elegant-text {
     animation: float-soft 3s infinite ease-in-out;
 }
 
-/* Map Cinematic Overlay */
-.map-dim-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.7);
-    opacity: 0;
-    pointer-events: none;
-    z-index: 5;
-    transition: opacity 1s ease;
-}
-
-.cinematic-text-container {
-    position: absolute;
-    top: 50%;
-    left: 5%; /* Shifted to left */
-    transform: translateY(-50%);
-    width: 40%; /* Narrower to stay on the left */
-    text-align: left; /* Aligned left */
-    z-index: 10;
-    pointer-events: none;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
-}
-
-.cinematic-word {
-    display: block;
-    color: var(--ivory-white);
-    font-size: 1.5rem; /* Reduced font size */
-    opacity: 0;
-    margin-bottom: 1.2rem;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
-    filter: blur(5px);
-}
+/* Map Cinematic Overlay (Defined at bottom of file for priority) */
 
 @keyframes float-soft {
     0%, 100% { transform: translateY(0); }
@@ -520,17 +645,6 @@ h1, h2, .elegant-text {
     100% { opacity: 1; transform: scale(1.2); }
 }
 
-.connection-path {
-    stroke: var(--rose-gold);
-    stroke-width: 2;
-    stroke-dasharray: 4 6;
-    opacity: 0.6;
-}
-
-.paper-plane {
-    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.2));
-    pointer-events: none;
-}
 
 .paper-plane path {
     transition: fill 0.3s ease;
@@ -659,20 +773,21 @@ h1, h2, .elegant-text {
 
 .unfold-hint {
     position: absolute;
-    bottom: -60px;
+    bottom: -45px; /* Moved closer to the note */
     left: 50%;
     transform: translateX(-50%);
     font-family: 'Fredoka', sans-serif;
     font-weight: 600;
     color: var(--rose-gold);
-    font-size: 1.2rem;
+    font-size: 1.3rem; /* Slightly larger */
     letter-spacing: 0.5px;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.5s ease;
     width: 100%;
     text-align: center;
-    text-shadow: 0 0 10px rgba(189, 135, 73, 0.4);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Stronger shadow for visibility */
+    z-index: 1000; /* Ensure it stays on top */
 }
 
 .unfold-hint.visible {
@@ -842,7 +957,7 @@ h1, h2, .elegant-text {
 }
 
 .ritual-hint {
-    font-family: 'Dancing Script', cursive;
+    font-family: 'Comic Sans MS', 'Comic Sans', cursive;
     font-size: 1.8rem;
     color: var(--rose-gold);
     margin-bottom: 2rem;
@@ -985,15 +1100,21 @@ h1, h2, .elegant-text {
 
 .celebratory-msg {
     position: fixed;
-    font-family: 'Dancing Script', cursive;
-    font-size: 2.5rem;
-    color: var(--rose-gold);
-    text-shadow: 0 0 15px rgba(255,255,255,1);
-    white-space: nowrap;
+    z-index: 10000;
+    font-family: 'Comic Neue', sans-serif; /* Highly readable handwriting sans serif */
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--sunflower-main);
+    text-shadow: 0 4px 10px rgba(0,0,0,0.6), 0 0 20px var(--sunflower-glow);
     pointer-events: none;
-    z-index: 2500;
-    font-weight: bold;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
+
+}
+
+/* Candles & Fire */
 
 /* Fireworks & Balloons */
 .spark {
@@ -1053,9 +1174,9 @@ h1, h2, .elegant-text {
     bottom: -100px;
     width: 70px;
     height: 100px;
-    background: linear-gradient(to bottom, #ffcc33, #ff6600);
+    background: linear-gradient(to bottom, #fffde7, #ffeb3b); /* Yellow glowing gradient */
     border-radius: 12px 12px 6px 6px;
-    box-shadow: 0 0 35px rgba(255, 150, 0, 0.7), inset 0 0 20px rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 35px rgba(255, 235, 59, 1), inset 0 0 20px rgba(255, 255, 255, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1075,13 +1196,13 @@ h1, h2, .elegant-text {
 }
 
 .lantern-text {
-    font-family: 'Dancing Script', cursive;
-    font-size: 0.9rem;
-    color: #4a1d00;
+    font-family: 'Montserrat', 'Inter', sans-serif; /* Highly legible sans serif */
+    font-size: 1.1rem; /* Slightly larger */
+    color: #2b1b00; /* Darker brown for sharp contrast on yellow */
     text-align: center;
-    line-height: 1.1;
+    line-height: 1.2;
     pointer-events: none;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 @keyframes lantern-flicker {
@@ -1114,7 +1235,7 @@ h1, h2, .elegant-text {
     left: 50%;
     transform: translate(-50%, -50%);
     pointer-events: none;
-    z-index: 5;
+    z-index: 1;
     overflow: visible;
 }
 
@@ -1122,6 +1243,7 @@ h1, h2, .elegant-text {
     stroke-dasharray: 600;
     stroke-dashoffset: 600; /* Animated via GSAP */
     filter: drop-shadow(0 0 5px rgba(189, 135, 73, 0.5));
+    opacity: 0.6;
 }
 
 .sticker {
@@ -1132,6 +1254,7 @@ h1, h2, .elegant-text {
     cursor: pointer;
     filter: drop-shadow(0 15px 25px rgba(0,0,0,0.3));
     opacity: 0; /* Animated via GSAP */
+    z-index: 2;
 }
 
 .sticker img {
@@ -1153,6 +1276,86 @@ h1, h2, .elegant-text {
     z-index: 20;
 }
 
+
+/* --- Story Voyage (April 13) --- */
+.story-voyage {
+    padding: 4rem 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.story-card {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin-bottom: 8rem;
+    opacity: 0; /* Animated via GSAP */
+}
+
+.story-card.stagger-right {
+    flex-direction: row-reverse;
+}
+
+.story-img-container {
+    flex: 1;
+    border-radius: 30px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    border: 1px solid var(--glass-border);
+}
+
+.story-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 1.5s ease;
+}
+
+.story-card:hover .story-img {
+    transform: scale(1.05);
+}
+
+.story-caption {
+    flex: 0.8;
+    padding: 2.5rem;
+    border-radius: 25px;
+    position: relative;
+}
+
+.card-glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+.story-caption p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-style: italic;
+    color: var(--rose-gold);
+    line-height: 1.4;
+    margin: 0;
+    text-shadow: 0 0 10px rgba(189, 135, 73, 0.2);
+}
+
+/* Mobile Story Adjustments */
+@media (max-width: 768px) {
+    .story-card, .story-card.stagger-right {
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-bottom: 5rem;
+        text-align: center;
+    }
+    .story-caption {
+        padding: 1.5rem;
+    }
+    .story-caption p {
+        font-size: 1.25rem;
+    }
+}
+
 /* --- Mobile Refinements --- */
 @media (max-width: 768px) {
     .dream-lantern {
@@ -1170,5 +1373,144 @@ h1, h2, .elegant-text {
     .polaroid-frame {
         width: 260px !important;
         padding: 15px 15px 40px 15px !important;
+    }
+}
+
+/* --- Cinematic Message Overlay --- */
+.map-dim-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.9) 100%);
+    opacity: 0;
+    z-index: 50;
+    pointer-events: none;
+    transition: opacity 1.5s ease;
+}
+
+.cinematic-text-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 60;
+    pointer-events: none;
+    text-align: center;
+    padding: 2rem;
+}
+
+.cinematic-word {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--rose-gold);
+    opacity: 0;
+    margin-bottom: 1.5rem;
+    filter: blur(10px);
+    text-shadow: 0 0 20px rgba(189, 135, 73, 0.4);
+    line-height: 1.4;
+}
+
+/* --- Final Mobile Perfection Refinements --- */
+@media (max-width: 480px) {
+    :root {
+        --glass-blur: 15px; /* Less heavy blur for mobile performance */
+    }
+
+    /* Landing Screen */
+    .elegant-text {
+        font-size: 2.4rem;
+        margin-bottom: 0.5rem;
+    }
+    .sub-text {
+        font-size: 1rem;
+        padding: 0 1.5rem;
+    }
+    .button-group {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .fluid-btn {
+        width: 80%;
+        padding: 0.8rem 1.5rem;
+    }
+
+    /* Section Spacing */
+    .chapter {
+        padding: 40px 15px;
+    }
+    .chapter-title {
+        font-size: 1.8rem;
+    }
+    .day-label {
+        font-size: 0.9rem;
+    }
+
+    /* Story Voyage (April 13) Mobile */
+    .story-voyage {
+        padding: 2rem 0;
+    }
+    .story-card {
+        margin-bottom: 4rem;
+        gap: 1.5rem;
+    }
+    .story-img-container {
+        border-radius: 20px;
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+    }
+    .story-caption {
+        padding: 1.5rem 1rem;
+        width: 100%;
+    }
+    .story-caption p {
+        font-size: 1.15rem;
+        line-height: 1.5;
+    }
+
+    /* Candle Ritual Mobile */
+    .candle-grid {
+        gap: 8px;
+    }
+    .candle {
+        width: 18px;
+        height: 90px;
+    }
+    .candle-wax {
+        height: 45px;
+    }
+    .flame-container {
+        bottom: 50px;
+    }
+    .ritual-hint {
+        font-size: 1.4rem;
+    }
+
+    /* Final Celebration Mobile */
+    .celebration-hero img {
+        width: 100%;
+        border-radius: 20px;
+    }
+    .final-letter {
+        padding: 2rem 1rem;
+        font-size: 1rem;
+    }
+
+    /* Cinematic Map Text Mobile */
+    .cinematic-text-container {
+        justify-content: flex-end; /* Move text to bottom */
+        padding-bottom: 20px;
+    }
+    .cinematic-word {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 0 10px rgba(189, 135, 73, 0.6);
     }
 }

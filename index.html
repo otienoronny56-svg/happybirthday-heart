@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Precious Immah | A Birthday Journey</title>
+    <title>For Sunflower | A Birthday Journey</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Dancing+Script:wght@400..700&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
     
     <!-- Lenis & GSAP -->
     <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.2/dist/lenis.css">
@@ -16,18 +16,20 @@
 <body>
 
     <!-- Landing Screen -->
-    <div id="landing" class="landing-overlay" style="background-image: url('assets/landing_bg.png'); background-size: cover; background-position: center;">
+    <div id="landing" class="landing-overlay">
         <div class="landing-content">
-            <h1 class="elegant-text">Hie Precious...</h1>
-            <p class="sub-text">Are you ready for your surprise journey?</p>
+            <h1 class="elegant-text">Hi Sunflower...</h1>
+            <p class="sub-text birthday-sub-text">The day is finally here. Happy Birthday, Sunflower! 🌻</p>
             <div class="button-group">
-                <button id="start-btn" class="fluid-btn">Open My Gift</button>
+                <button id="start-btn" class="fluid-btn">Celebrate My Special Day</button>
                 <button id="no-btn" class="secondary-btn">No</button>
             </div>
+            <img src="assets/birthday_cake_sticker.png" alt="Birthday Cake" class="cake-sticker landing-sticker">
         </div>
         <!-- Surprise Containers -->
         <div id="emoji-canvas" class="emoji-container"></div>
         <div id="floating-msgs" class="floating-messages"></div>
+        <div id="petal-canvas" class="petal-container"></div>
         <div id="arrow-pointer" class="arrow-container"></div>
         
         <div class="flower-decoration top-left"></div>
@@ -37,10 +39,9 @@
     <!-- Main Content (Hidden initially) -->
     <main id="main-content" class="hidden">
         <!-- Day 1: April 13 -->
-        <section id="day-1" class="chapter locked" data-date="2026-04-13">
+        <section id="april-12" class="chapter unlocked" data-date="2026-04-12">
             <div class="chapter-content">
-                <span class="date-label">April 13</span>
-                <h2>The Journey Begins</h2>
+                <h2>A Lifetime of Love</h2>
                 
                 <!-- Horizontal Memory Journey -->
                 <div class="journey-container">
@@ -53,36 +54,36 @@
                         <div class="polaroid-item hang-1">
                             <div class="peg"></div>
                             <div class="polaroid-frame">
-                                <img src="memory_1_laughter_1775913120160.png" alt="Happy Moments" class="memory-img">
-                                <p class="polaroid-caption">Where our hearts met. ✨</p>
+                                <img src="assets/WhatsApp Image 2026-04-11 at 6.03.58 PM (1).jpeg" alt="Endless Love" class="memory-img">
+                                <p class="polaroid-caption">Endless Love & Laughter ✨</p>
                             </div>
                         </div>
                         <div class="polaroid-item hang-2">
                             <div class="peg"></div>
                             <div class="polaroid-frame">
-                                <img src="memory_2_adventure_1775913147096.png" alt="Sunset Adventure" class="memory-img">
-                                <p class="polaroid-caption">The laughter we shared. 🥂</p>
+                                <img src="assets/WhatsApp Image 2026-04-11 at 6.03.58 PM.jpeg" alt="Walking Through Life" class="memory-img">
+                                <p class="polaroid-caption">Walking Through Life Together 🛤️</p>
                             </div>
                         </div>
                         <div class="polaroid-item hang-3">
                             <div class="peg"></div>
                             <div class="polaroid-frame">
-                                <img src="memory_3_cafe_1775913178167.png" alt="Cafe Conversation" class="memory-img">
-                                <p class="polaroid-caption">A moment in time. 🕰️</p>
+                                <img src="assets/WhatsApp Image 2026-04-11 at 6.04.08 PM.jpeg" alt="Celebrating You" class="memory-img">
+                                <p class="polaroid-caption">Celebrating You Every Day 🎂</p>
                             </div>
                         </div>
                         <div class="polaroid-item hang-4">
                             <div class="peg"></div>
                             <div class="polaroid-frame">
-                                <img src="memory_4_beach_1775913203259.png" alt="Beach Dusk" class="memory-img">
-                                <p class="polaroid-caption">Our first sunrise. 🌅</p>
+                                <img src="assets/WhatsApp Image 2026-04-11 at 6.04.15 PM.jpeg" alt="Radiance" class="memory-img">
+                                <p class="polaroid-caption">Radiating confidence and grace ✨</p>
                             </div>
                         </div>
                         <div class="polaroid-item hang-5">
                             <div class="peg"></div>
                             <div class="polaroid-frame">
-                                <img src="memory_5_roadtrip_1775913230389.png" alt="Road Trip" class="memory-img">
-                                <p class="polaroid-caption">Where it all started. 🌱</p>
+                                <img src="assets/WhatsApp Image 2026-04-11 at 6.04.23 PM.jpeg" alt="Queen Vibe" class="memory-img">
+                                <p class="polaroid-caption">A queen in her element 👑</p>
                             </div>
                         </div>
 
@@ -90,134 +91,228 @@
                         <div class="polaroid-item hang-1 duplicate">
                             <div class="peg"></div>
                             <div class="polaroid-frame">
-                                <img src="memory_1_laughter_1775913120160.png" alt="Happy Moments" class="memory-img">
-                                <p class="polaroid-caption">Where our hearts met. ✨</p>
+                                <img src="assets/WhatsApp Image 2026-04-11 at 6.03.58 PM (1).jpeg" alt="Endless Love" class="memory-img">
+                                <p class="polaroid-caption">Endless Love & Laughter ✨</p>
                             </div>
                         </div>
                         <div class="polaroid-item hang-2 duplicate">
                             <div class="peg"></div>
                             <div class="polaroid-frame">
-                                <img src="memory_2_adventure_1775913147096.png" alt="Sunset Adventure" class="memory-img">
-                                <p class="polaroid-caption">The laughter we shared. 🥂</p>
+                                <img src="assets/WhatsApp Image 2026-04-11 at 6.03.58 PM.jpeg" alt="Walking Through Life" class="memory-img">
+                                <p class="polaroid-caption">Walking Through Life Together 🛤️</p>
                             </div>
                         </div>
                         <div class="polaroid-item hang-3 duplicate">
                             <div class="peg"></div>
                             <div class="polaroid-frame">
-                                <img src="memory_3_cafe_1775913178167.png" alt="Cafe Conversation" class="memory-img">
-                                <p class="polaroid-caption">A moment in time. 🕰️</p>
+                                <img src="assets/WhatsApp Image 2026-04-11 at 6.04.08 PM.jpeg" alt="Celebrating You" class="memory-img">
+                                <p class="polaroid-caption">Celebrating You Every Day 🎂</p>
+                            </div>
+                        </div>
+                        <div class="polaroid-item hang-4 duplicate">
+                            <div class="peg"></div>
+                            <div class="polaroid-frame">
+                                <img src="assets/WhatsApp Image 2026-04-11 at 6.04.15 PM.jpeg" alt="Radiance" class="memory-img">
+                                <p class="polaroid-caption">Radiating confidence and grace ✨</p>
+                            </div>
+                        </div>
+                        <div class="polaroid-item hang-5 duplicate">
+                            <div class="peg"></div>
+                            <div class="polaroid-frame">
+                                <img src="assets/WhatsApp Image 2026-04-11 at 6.04.23 PM.jpeg" alt="Queen Vibe" class="memory-img">
+                                <p class="polaroid-caption">A queen in her element 👑</p>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Swipe Hint -->
                     <div class="swipe-hint">
-                        <span>Swipe to explore the journey</span>
+                        <span>Swipe to relive your beautiful moments</span>
                         <div class="arrow-swipe"></div>
                     </div>
                 </div>
 
                 <div class="sticker-container day-1-stickers">
+                    <svg class="sticker-connector" viewBox="0 0 200 100" preserveAspectRatio="none">
+                        <path class="connector-path" d="M20,50 C100,20 100,80 180,50" fill="none" stroke="#bd8749" stroke-width="2" stroke-dasharray="5,5" />
+                    </svg>
                     <div class="sticker sticker-ashley" id="sticker-ashley">
                         <img src="ashley_note.png" alt="Note from Ashley">
                     </div>
-                    
-                    <svg class="sticker-connector" viewBox="0 0 200 100" preserveAspectRatio="none">
-                        <path class="connector-path" d="M10,60 Q100,0 190,40" fill="none" stroke="#bd8749" stroke-width="2" stroke-dasharray="5,5" />
-                    </svg>
-
                     <div class="sticker sticker-ronny" id="sticker-ronny">
                         <img src="ronny_note.png" alt="Note from Ronny">
                     </div>
                 </div>
                 <div id="bush-day-1" class="flower-bush-container"></div>
                 <div class="story-text">
-                    <p>It all started 28 years ago...</p>
+                    <p>It was 28 years ago when the world got a little brighter because of you...</p>
                 </div>
-            </div>
-        </section>
 
-        <!-- Day 2: April 14 (Distance) -->
-        <section id="day-2" class="chapter locked" data-date="2026-04-14">
-            <div class="chapter-content">
-                <span class="day-label">Day 2: April 14</span>
-                <h1 class="chapter-title reveal-text">Distance is Just a Number</h1>
-                
-                <div class="map-container">
-                    <div id="map-dim-overlay" class="map-dim-overlay"></div>
-                    <div id="cinematic-text-container" class="cinematic-text-container">
-                        <!-- Words will be injected here via JS -->
+                <div class="chapter-divider" style="margin: 4rem 0; height: 1px; background: var(--glass-border);"></div>
+
+                <div class="distance-experience">
+                    <h2 class="reveal-text" style="color: var(--rose-gold); margin-bottom: 2rem;">Distance is Just a Number</h2>
+                    <div class="map-container">
+                        <div id="map-dim-overlay" class="map-dim-overlay"></div>
+                        <div id="cinematic-text-container" class="cinematic-text-container">
+                            <!-- Words will be injected here via JS -->
+                        </div>
+
+                        <svg id="connection-map" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice">
+                            <!-- Stylized World Outlines -->
+                            <path class="map-outline" d="M150,100 Q200,80 250,110 T350,100 T450,120 T550,100 T650,130" opacity="0.4" />
+                            <path class="map-outline" d="M100,250 Q200,230 300,260 T500,240 T700,270" opacity="0.4" />
+                            
+                            <!-- Floating Sparkles/Stars -->
+                            <g class="celestial-decor">
+                                <circle cx="120" cy="150" r="2" class="sparkle" />
+                                <circle cx="280" cy="80" r="1.5" class="sparkle" />
+                                <circle cx="200" cy="320" r="2.5" class="sparkle" />
+                                <path d="M140,280 L145,285 L140,290 L135,285 Z" class="sparkle" />
+                            </g>
+                            
+                            <!-- The Connection Arc (Sweeping and Long) -->
+                            <path id="connection-arc" d="M540,320 C350,250 300,100 515,85" fill="none" class="connection-path" />
+                            
+                            <!-- Real Paper Plane (Yellow) -->
+                            <g id="paper-plane" class="paper-plane">
+                                <path d="M0,0 L20,-5 L5,15 Z" fill="#ffeb3b" /> <!-- Main wing (Sun yellow) -->
+                                <path d="M0,0 L20,-5 L15,5 Z" fill="#fbc02d" /> <!-- Side fold (Darker yellow) -->
+                                <path d="M0,0 L15,5 L5,15 Z" fill="#f9a825" /> <!-- Bottom fold (Gold) -->
+                            </g>
+
+                            <!-- Location Markers -->
+                            <g class="marker kenya" transform="translate(540, 320)">
+                                <circle class="marker-pulse" r="10" />
+                                <circle class="marker-point" r="4" />
+                                <text y="35" class="marker-label">Kenya 🇰🇪</text>
+                            </g>
+                            <g class="marker finland" transform="translate(515, 85)">
+                                <circle class="marker-pulse" r="10" />
+                                <circle class="marker-point" r="4" />
+                                <text y="-35" class="marker-label">Finland 🇫🇮</text>
+                            </g>
+                        </svg>
                     </div>
 
-                    <svg id="connection-map" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice">
-                        <!-- Stylized World Outlines -->
-                        <path class="map-outline" d="M150,100 Q200,80 250,110 T350,100 T450,120 T550,100 T650,130" opacity="0.1" />
-                        <path class="map-outline" d="M100,250 Q200,230 300,260 T500,240 T700,270" opacity="0.1" />
-                        
-                        <!-- Floating Sparkles/Stars -->
-                        <g class="celestial-decor">
-                            <circle cx="120" cy="150" r="2" class="sparkle" />
-                            <circle cx="280" cy="80" r="1.5" class="sparkle" />
-                            <circle cx="200" cy="320" r="2.5" class="sparkle" />
-                            <path d="M140,280 L145,285 L140,290 L135,285 Z" class="sparkle" />
-                        </g>
-                        
-                        <!-- The Connection Arc (Sweeping and Long) -->
-                        <path id="connection-arc" d="M540,320 C350,250 300,100 515,85" fill="none" class="connection-path" />
-                        
-                        <!-- Real Paper Plane -->
-                        <g id="paper-plane" class="paper-plane">
-                            <path d="M0,0 L20,-5 L5,15 Z" fill="#fff" /> <!-- Main wing -->
-                            <path d="M0,0 L20,-5 L15,5 Z" fill="#eee" /> <!-- Side fold -->
-                            <path d="M0,0 L15,5 L5,15 Z" fill="#ddd" /> <!-- Bottom fold -->
-                        </g>
-
-                        <!-- Location Markers -->
-                        <g class="marker kenya" transform="translate(540, 320)">
-                            <circle class="marker-pulse" r="10" />
-                            <circle class="marker-point" r="4" />
-                            <text y="25" class="marker-label">Kenya 🇰🇪</text>
-                        </g>
-                        <g class="marker finland" transform="translate(515, 85)">
-                            <circle class="marker-pulse" r="10" />
-                            <circle class="marker-point" r="4" />
-                            <text y="-20" class="marker-label">Finland 🇫🇮</text>
-                        </g>
-                    </svg>
-                </div>
-
-                <div class="story-text">
-                    <p class="distance-msg"><span id="km-counter">0</span> km of distance, but <span id="mm-counter">7000</span> mm between our hearts.</p>
-                    <p>"You are more than a sister; you are a piece of my heart that lives across the ocean. Every mile between us is filled with love."</p>
-                    <button id="show-message-btn" class="secondary-btn">Tap for a secret note 💌</button>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Day 3: April 15 -->
-        <section id="day-3" class="chapter locked" data-date="2026-04-15">
-            <div class="chapter-content">
-                <span class="day-label">Day 3: April 15</span>
-                <h2 class="chapter-title">Precious Moments</h2>
-                <div class="gallery-grid">
-                    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=500" alt="Shared Laughs"></div>
-                    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=500" alt="Joy"></div>
+                    <div class="story-text">
+                        <p class="distance-msg">7000 km of distance, but 0 mm between our hearts.</p>
+                        <p>"You are more than a sister; you are a piece of my heart that lives across the ocean. Every mile between us is filled with love."</p>
+                        <button id="show-message-btn" class="secondary-btn">Tap for a secret note 💌</button>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Day 4: April 16 (Birthday) -->
-        <section id="day-4" class="chapter locked" data-date="2026-04-16">
+        <!-- Day 2: April 13 -->
+        <section id="april-13" class="chapter unlocked" data-date="2026-04-13">
             <div class="chapter-content">
-                <span class="day-label">The Big Day: April 16</span>
-                <h1 class="birthday-title reveal-text">Happy 28th Birthday, Precious Immah!</h1>
+                <h2 class="chapter-title">Sunflower Moments</h2>
+                <div class="story-voyage">
+                    <!-- Story Card 1 -->
+                    <div class="story-card stagger-left">
+                        <div class="story-img-container">
+                            <img src="assets/WhatsApp Image 2026-04-11 at 6.04.24 PM.jpeg" alt="Shared Laughs" class="story-img">
+                        </div>
+                        <div class="story-caption card-glass">
+                            <p>"Moments that turn into memories, and laughter that echoes forever."</p>
+                        </div>
+                    </div>
+
+                    <!-- Story Card 2 -->
+                    <div class="story-card stagger-right">
+                        <div class="story-img-container">
+                            <img src="assets/WhatsApp Image 2026-04-11 at 6.04.25 PM.jpeg" alt="Joy" class="story-img">
+                        </div>
+                        <div class="story-caption card-glass">
+                            <p>"Your smile is a sunshine that warms every heart it touches."</p>
+                        </div>
+                    </div>
+
+                    <!-- Story Card 3 -->
+                    <div class="story-card stagger-left">
+                        <div class="story-img-container">
+                            <img src="assets/WhatsApp Image 2026-04-11 at 6.04.26 PM.jpeg" alt="Beauty" class="story-img">
+                        </div>
+                        <div class="story-caption card-glass">
+                            <p>"True beauty radiates from within, and yours shines like a diamond."</p>
+                        </div>
+                    </div>
+
+                    <!-- Story Card 4 -->
+                    <div class="story-card stagger-right">
+                        <div class="story-img-container">
+                            <img src="assets/WhatsApp Image 2026-04-11 at 6.04.27 PM.jpeg" alt="Smile" class="story-img">
+                        </div>
+                        <div class="story-caption card-glass">
+                            <p>"A single smile from you can change the mood of an entire day."</p>
+                        </div>
+                    </div>
+
+                    <!-- Story Card 5 -->
+                    <div class="story-card stagger-left">
+                        <div class="story-img-container">
+                            <img src="assets/WhatsApp Image 2026-04-11 at 6.04.28 PM (1).jpeg" alt="Peace" class="story-img">
+                        </div>
+                        <div class="story-caption card-glass">
+                            <p>"Finding serenity in your grace, and home in your heart."</p>
+                        </div>
+                    </div>
+
+                    <!-- Story Card 6 -->
+                    <div class="story-card stagger-right">
+                        <div class="story-img-container">
+                            <img src="assets/WhatsApp Image 2026-04-11 at 6.04.28 PM.jpeg" alt="Style" class="story-img">
+                        </div>
+                        <div class="story-caption card-glass">
+                            <p>"Fashion passes, but a soul as vibrant as yours is eternal style."</p>
+                        </div>
+                    </div>
+
+                    <!-- Story Card 7 -->
+                    <div class="story-card stagger-left">
+                        <div class="story-img-container">
+                            <img src="assets/WhatsApp Image 2026-04-11 at 6.04.29 PM.jpeg" alt="Elegance" class="story-img">
+                        </div>
+                        <div class="story-caption card-glass">
+                            <p>"Pure elegance is not about being noticed, but about being remembered."</p>
+                        </div>
+                    </div>
+
+                    <!-- Story Card 8 -->
+                    <div class="story-card stagger-right">
+                        <div class="story-img-container">
+                            <img src="assets/WhatsApp Image 2026-04-11 at 6.04.30 PM.jpeg" alt="Grace" class="story-img">
+                        </div>
+                        <div class="story-caption card-glass">
+                            <p>"Moving through life with a kindness that inspires us all."</p>
+                        </div>
+                    </div>
+
+                    <!-- Story Card 9 -->
+                    <div class="story-card stagger-left">
+                        <div class="story-img-container">
+                            <img src="assets/WhatsApp Image 2026-04-11 at 6.04.31 PM (1).jpeg" alt="Adventure" class="story-img">
+                        </div>
+                        <div class="story-caption card-glass">
+                            <p>"The best journey is the one where your spirit is free and bold."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Celebration: April 14 -->
+        <section id="april-14" class="chapter unlocked" data-date="2026-04-14">
+            <div class="chapter-content">
+                <h1 class="birthday-title reveal-text">Happy 28th Birthday, Sunflower!</h1>
                 
                 <!-- 28 Candles Ritual -->
                 <div id="candle-ritual" class="ritual-container">
                     <p class="ritual-hint">Touch each flame to blow it out...</p>
                     <div id="candle-grid" class="candle-grid"></div>
                     <div id="wish-prompt" class="wish-prompt hidden">
+                        <p class="age-reveal-text">28 candles for 28 beautiful years!</p>
                         <p>All out! Now, close your eyes and...</p>
                         <button id="make-a-wish-btn" class="wish-btn">Make a Wish ✨</button>
                     </div>
@@ -225,14 +320,14 @@
 
                 <div id="final-celebration" class="celebration-content hidden">
                     <div class="celebration-hero">
-                        <img src="assets/cake.png" alt="Birthday Cake" class="zoom-img">
+                        <img src="assets/WhatsApp Image 2026-04-11 at 6.04.28 PM (1).jpeg" alt="Birthday Celebration" class="zoom-img">
                     </div>
                     <!-- Procedural Celebration Bush Day 4 -->
                     <div class="flower-bush-container" id="bush-day-4"></div>
                     <div class="final-letter">
                         <p>My dearest sister,</p>
                         <p>May your 28th year be as brilliant as the northern lights and as warm as the Kenyan sun. We love you so much!</p>
-                        <p class="signature">With love, Ronny & [Your Boyfriend's Name]</p>
+                        <p class="signature">With love, Ashley and Ronny</p>
                     </div>
                 </div>
             </div>
@@ -243,10 +338,10 @@
     <div class="music-player">
         <button id="music-toggle" class="music-btn">
             <span class="icon">♪</span>
-            <span class="label">Playing Soft Beats...</span>
+            <span class="label">Playing Birthday Beats... 🎂</span>
         </button>
         <audio id="bg-music" loop>
-            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+            <source src="https://archive.org/download/happy-birthday-to-you-instrumental-ukulele-kids/Happy%20Birthday%20To%20You%20%28Instrumental%20%26%20Ukulele%20Kids%29.mp3" type="audio/mpeg">
         </audio>
     </div>
 

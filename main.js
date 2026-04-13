@@ -13,29 +13,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     requestAnimationFrame(raf);
 
-    // 2. Date Locking Logic
-    // const today = new Date(); // Production Mode: Real-time locking
-    const today = new Date('2026-04-16'); // Test Mode: Unlocked for final testing
-    const chapters = document.querySelectorAll('.chapter');
-    chapters.forEach(chapter => {
-        const unlockDate = new Date(chapter.dataset.date);
-        
-        // Check if today is on or after the unlock date
-        if (today >= unlockDate) {
-            chapter.classList.remove('locked');
-            chapter.classList.add('unlocked');
-        } else {
-            // Keep it locked
-            chapter.classList.add('locked');
-        }
+    // 2. Celebration Mode: All Chapters Unlocked
+    document.querySelectorAll('.chapter').forEach(chapter => {
+        chapter.classList.remove('locked');
+        chapter.classList.add('unlocked');
     });
 
     // 3. GSAP Animations - Landing
     const tl = gsap.timeline();
     tl.to('.elegant-text', { opacity: 1, y: 0, duration: 1.5, delay: 0.5, ease: 'power4.out' })
       .to('.sub-text', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, "-=0.8")
+      .to('.cake-sticker', { opacity: 1, x: -300, rotation: 10, duration: 1.5, ease: 'power2.out' }, "-=1")
       .to('.fluid-btn', { opacity: 1, scale: 1, duration: 1, ease: 'back.out(1.7)' }, "-=0.5")
       .to('.secondary-btn', { opacity: 1, scale: 1, duration: 1, ease: 'back.out(1.7)' }, "-=0.8");
+ 
+     // Sunflower Petal Rain
+     spawnSunflowerPetals();
 
     // 4. Start Button Click
     const landing = document.getElementById('landing');
@@ -251,7 +244,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Reveal animations for scrolls
         initScrollAnimations();
-        initInfiniteJourney();
         
         // Scroll to top just in case
         window.scrollTo(0, 0);
@@ -260,6 +252,32 @@ document.addEventListener('DOMContentLoaded', () => {
     // 5. Scroll Animations (GSAP ScrollTrigger)
     function initScrollAnimations() {
         gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
+
+        // Procedural Flower Bushes
+        createFlowerBush('bush-day-1', false);
+
+        // Handwritten Sticky Notes Reveal (Day 1)
+        const stickerTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#bush-day-1",
+                start: "top 90%",
+                toggleActions: "play none none none"
+            }
+        });
+
+        stickerTl.to('.day-1-stickers .sticker', {
+            opacity: 1,
+            scale: 1,
+            duration: 1.5,
+            stagger: 1.5,
+            delay: 4, 
+            ease: "back.out(1.7)"
+        })
+        .to('.connector-path', {
+            strokeDashoffset: 0,
+            duration: 2,
+            ease: "power2.inOut"
+        }, "-=1.5");
 
         // Parallax Effect for Images
         gsap.utils.toArray('.parallax-img').forEach(img => {
@@ -286,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 duration: 1.2,
                 scrollTrigger: {
                     trigger: content,
-                    start: 'top 80%',
+                    start: 'top 90%',
                     toggleActions: 'play none none none'
                 }
             });
@@ -299,12 +317,38 @@ document.addEventListener('DOMContentLoaded', () => {
             duration: 2,
             ease: 'elastic.out(1, 0.5)',
             scrollTrigger: {
-                trigger: '#day-4',
+                trigger: '#april-14',
                 start: 'top 50%',
             }
         });
 
-        // --- The Infinite Memory Thread (Chapter 1) ---
+        // 4. April 13: Story Card Reveals
+        const storyCards = document.querySelectorAll('.story-card');
+        storyCards.forEach((card) => {
+            const isRight = card.classList.contains('stagger-right');
+            const xOffset = isRight ? 100 : -100;
+
+            gsap.fromTo(card, {
+                opacity: 0,
+                x: xOffset,
+                scale: 0.93
+            }, {
+                opacity: 1,
+                x: 0,
+                scale: 1,
+                duration: 1.5,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 90%',
+                    toggleActions: 'play none none none'
+                }
+            });
+        });
+
+        // Infinite Thread & Other Sections
+        initInfiniteJourney();
+        initCandleRitual();
     }
 
     function initInfiniteJourney() {
@@ -334,7 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Start when section is reached
         ScrollTrigger.create({
-            trigger: "#day-1",
+            trigger: "#april-12",
             start: "top 80%",
             onEnter: () => startAutoSlide(),
             onLeave: () => { if (journeyTween) journeyTween.pause(); },
@@ -364,44 +408,6 @@ document.addEventListener('DOMContentLoaded', () => {
         container.addEventListener('mouseleave', () => { 
             if (!gsap.isTweening(container) && !resumeTimeout) startAutoSlide(); 
         });
-    }
-
-    function initScrollAnimations() {
-
-        // Procedural Flower Bushes
-        createFlowerBush('bush-day-1', false);
-
-        // Handwritten Sticky Notes Reveal (Day 1)
-        const stickerTl = gsap.timeline({
-            scrollTrigger: {
-                trigger: "#bush-day-1",
-                start: "top 75%",
-                toggleActions: "play none none none"
-            }
-        });
-
-        stickerTl.to('.day-1-stickers .sticker', {
-            opacity: 1,
-            scale: 1,
-            duration: 1.5,
-            stagger: 1.5,
-            delay: 4, 
-            ease: "back.out(1.7)"
-        })
-        .to('.connector-path', {
-            strokeDashoffset: 0,
-            duration: 2,
-            ease: "power2.inOut"
-        }, "-=1.5"); // Start drawing as Ashley's note appears
-        
-        // 1. Infinite Journey (Day 1)
-        initInfiniteJourney();
-
-        // 2. Connection Map (Day 2 - Paper Plane)
-        initConnectionMap();
-        
-        // 3. 28 Candles Ritual
-        initCandleRitual();
     }
 
     function initCandleRitual() {
@@ -521,7 +527,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function spawnCelebrationTexts() {
         const phrases = [
-            "Happiest Birthday my Precious sister! 🎂",
+            "Happiest Birthday my Sunflower sister! 🎂",
             "Enjoy your day! 💖",
             "You deserve the world! ✨",
             "28 Years of Brilliance! 🌟",
@@ -544,15 +550,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 gsap.fromTo(msg, 
                     { opacity: 0, scale: 0.5, y: 50 },
                     { 
-                        opacity: 1, scale: 1.2, y: -100, 
-                        duration: 3, 
-                        ease: 'power2.out',
+                        opacity: 1, scale: 1.2, y: -150, 
+                        duration: 6, // Doubled duration for a slow float
+                        ease: 'power1.out',
                         onComplete: () => {
-                            gsap.to(msg, { opacity: 0, duration: 1, delay: 1, onComplete: () => msg.remove() });
+                            // Slower fade out
+                            gsap.to(msg, { opacity: 0, duration: 2, delay: 2, onComplete: () => msg.remove() });
                         }
                     }
                 );
-            }, i * 800); // Stagger manually for extra control
+            }, i * 1500); // Increased stagger interval for readability
         });
     }
 
@@ -638,7 +645,7 @@ document.addEventListener('DOMContentLoaded', () => {
         svg.appendChild(defs);
         svg.appendChild(vase);
 
-        const colors = ['#f4c1bc', '#ffd1dc', '#fefefe', '#e6e6fa', '#ffdab9'];
+        const colors = ['#f4c1bc', '#ffd1dc', '#fefefe', '#e6e6fa', '#ffdab9', '#ffeb3b', '#fff59d']; // Added yellows
         const numBranches = isCelebration ? 35 : 25; // Massive increase for fullness
         
         const masterTl = gsap.timeline({
@@ -710,9 +717,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function initConnectionMap() {
         const arc = document.getElementById('connection-arc');
         const plane = document.getElementById('paper-plane');
-        // --- Cinematic Message Logic (Compass Replacement) ---
         const cinematicOverlay = document.getElementById('map-dim-overlay');
         const textContainer = document.getElementById('cinematic-text-container');
+        const kmCounter = document.getElementById('km-counter');
+        const mmCounter = document.getElementById('mm-counter');
+
         const cinematicLines = [
             "Across every ocean... 🌊",
             "Across every mile... ✈️",
@@ -721,113 +730,82 @@ document.addEventListener('DOMContentLoaded', () => {
             "- Love, Ashley"
         ];
 
-        function triggerCinematicMessage() {
-            if (!cinematicOverlay || !textContainer || cinematicOverlay.classList.contains('triggered')) return;
-            cinematicOverlay.classList.add('triggered');
-            
-            // 1. Reset container
-            textContainer.innerHTML = '';
-            cinematicOverlay.style.opacity = '1';
-            
-            const cinematicTl = gsap.timeline();
-            
-            cinematicLines.forEach((line, index) => {
-                const wordEl = document.createElement('span');
-                wordEl.className = 'cinematic-word';
-                wordEl.innerText = line;
-                textContainer.appendChild(wordEl);
-                
-                cinematicTl.to(wordEl, { 
-                    opacity: 1, 
-                    y: -20, 
-                    filter: "blur(0px)",
-                    duration: 1.5, 
-                    ease: "power2.out" 
-                }, index * 2)
-                .to(wordEl, {
-                    scale: 1.05,
-                    duration: 2,
-                    repeat: 1,
-                    yoyo: true,
-                    ease: "sine.inOut"
-                }, index * 2);
-            });
-
-            // 2. Add tap to close
-            const closePrompt = document.createElement('div');
-            closePrompt.style.cssText = "color: #fff; opacity: 0; margin-top: 2rem; font-size: 0.9rem; cursor: pointer; text-align: center; width: 100%; font-family: sans-serif;";
-            closePrompt.innerText = "(Tap anywhere to return to map)";
-            textContainer.appendChild(closePrompt);
-            
-            cinematicTl.to(closePrompt, { opacity: 0.6, duration: 1 }, "+=1");
-
-            const closeHider = () => {
-                gsap.to([cinematicOverlay, textContainer], { opacity: 0, duration: 1, onComplete: () => {
-                    cinematicOverlay.style.opacity = '0';
-                    textContainer.innerHTML = '';
-                    // Allow re-triggering if they scroll away and back? 
-                    // No, usually just once is better for cinematic.
-                }});
-                window.removeEventListener('click', closeHider);
-            };
-            
-            setTimeout(() => {
-                window.addEventListener('click', closeHider);
-            }, 3000);
-        }
-
-        // Trigger cinematic message as part of the map scroll
-        ScrollTrigger.create({
-            trigger: "#day-2",
-            start: "top 20%",
-            onEnter: () => triggerCinematicMessage()
-        });
-
-        // Path Drawing Logic
+        // 1. Hard Reset of Map Components
         const pathLength = arc.getTotalLength();
         gsap.set(arc, { strokeDasharray: pathLength, strokeDashoffset: pathLength });
+        gsap.set(cinematicOverlay, { opacity: 0 });
+        textContainer.innerHTML = ''; 
 
+        // 2. Pre-build the cinematic words exactly where they should be
+        cinematicLines.forEach((line) => {
+            const wordEl = document.createElement('div');
+            wordEl.className = 'cinematic-word absolute-word';
+            wordEl.innerText = line;
+            // Force absolute so they stack neatly to be revealed one by one
+            wordEl.style.position = 'absolute';
+            wordEl.style.width = '100%';
+            wordEl.style.bottom = '20px';
+            wordEl.style.left = '0';
+            textContainer.appendChild(wordEl);
+            
+            // Set initial invisible state
+            gsap.set(wordEl, { opacity: 0, y: 30, filter: "blur(10px)" });
+        });
+
+        const words = textContainer.querySelectorAll('.cinematic-word');
+
+        // 3. The Nuclear Master Timeline
+        // Locks the screen in place for 2000 pixels while everything scrubs flawlessly
         const mapTl = gsap.timeline({
             scrollTrigger: {
-                trigger: '#day-2',
-                start: 'top 60%',
-                end: 'bottom 20%',
-                scrub: 2,
+                trigger: '.distance-experience',
+                start: 'top top',
+                end: '+=2500', 
+                scrub: 1, // Smooth scrolling
+                pin: true,
+                pinReparent: true, // CRITICAL FIX: Moves it out of transformed containers to prevent scrolling into empty space
+                anticipatePin: 1
             }
         });
 
-        // 1. Draw the sweeping arc
-        const kmCounter = document.getElementById('km-counter');
-        const mmCounter = document.getElementById('mm-counter');
+        // Dim background right at the start
+        mapTl.to(cinematicOverlay, { opacity: 1, duration: 0.5 }, 0);
 
-        mapTl.to(arc, {
-            strokeDashoffset: 0,
-            ease: 'none'
-        })
-        .to(plane, {
-            motionPath: {
-                path: arc,
-                align: arc,
-                autoRotate: true,
-                alignOrigin: [0.5, 0.5]
-            },
-            ease: 'none'
-        }, 0)
-        // Counter Animations
-        .to(kmCounter, {
-            innerText: 7000,
-            snap: { innerText: 1 },
-            duration: 1,
-            ease: 'none'
-        }, 0)
-        .to(mmCounter, {
-            innerText: 0,
-            snap: { innerText: 1 },
-            duration: 1,
-            ease: 'none'
-        }, 0);
+        // Map flight basics (duration of 10 represents the whole timeline length)
+        mapTl.to(arc, { strokeDashoffset: 0, ease: 'power1.inOut', duration: 10 }, 0)
+             .to(plane, {
+                 motionPath: {
+                     path: arc,
+                     align: arc,
+                     autoRotate: true,
+                     alignOrigin: [0.5, 0.5]
+                 },
+                 ease: 'power1.inOut',
+                 duration: 10
+             }, 0);
 
+        // Inject the text reveals perfectly spaced across the 10-duration flight
+        const interval = 10 / words.length;
+        words.forEach((word, i) => {
+            const startTime = i * interval;
+            
+            // Fade In
+            mapTl.to(word, { 
+                opacity: 1, y: 0, filter: "blur(0px)", duration: 0.8, ease: 'power2.out' 
+            }, startTime);
+            
+            // Fade Out (unless it's the last word)
+            if (i < words.length - 1) {
+                mapTl.to(word, { 
+                    opacity: 0, y: -30, filter: "blur(10px)", duration: 0.8, ease: 'power2.in' 
+                }, startTime + interval - 0.8);
+            }
+        });
+
+        // Buffer space at the end so the user can read the last line before unpinning
+        mapTl.to({}, { duration: 1.5 });
     }
+
 
     // 6. Music Toggle Logic
     const musicBtn = document.getElementById('music-toggle');
@@ -888,8 +866,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     y: -window.innerHeight - 500, 
                     opacity: 1, 
                     scale: 1, 
-                    duration: 12 + Math.random() * 8, 
-                    delay: Math.random() * 4,
+                    duration: 35 + Math.random() * 20, // Huge increase for a slow, gentle float
+                    delay: Math.random() * 10, // Stagger them more naturally
                     ease: "power1.inOut",
                     onComplete: () => lantern.remove()
                 }
@@ -898,10 +876,52 @@ document.addEventListener('DOMContentLoaded', () => {
             // Add some gentle sway
             gsap.to(lantern, {
                 x: (Math.random() - 0.5) * 200,
-                duration: 4 + Math.random() * 3,
+                duration: 8 + Math.random() * 5, // Much slower panning sway
                 repeat: -1,
                 yoyo: true,
                 ease: "sine.inOut"
+            });
+        }
+    }
+
+    function spawnSunflowerPetals() {
+        const container = document.getElementById('petal-canvas');
+        if (!container) return;
+
+        const petalCount = 30;
+        for (let i = 0; i < petalCount; i++) {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            
+            // Random sizes
+            const size = gsap.utils.random(10, 25);
+            petal.style.width = `${size}px`;
+            petal.style.height = `${size * 0.7}px`;
+            
+            // Random positions
+            petal.style.left = `${gsap.utils.random(0, 100)}%`;
+            petal.style.top = `-50px`;
+            
+            container.appendChild(petal);
+
+            // Animate falling
+            gsap.to(petal, {
+                y: window.innerHeight + 100,
+                x: `+=${gsap.utils.random(-200, 200)}`,
+                rotation: gsap.utils.random(0, 360),
+                duration: gsap.utils.random(7, 12),
+                delay: gsap.utils.random(0, 15),
+                ease: 'none',
+                repeat: -1
+            });
+
+            // Gentle wobble
+            gsap.to(petal, {
+                x: `+=${gsap.utils.random(-30, 30)}`,
+                duration: gsap.utils.random(2, 4),
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
             });
         }
     }
