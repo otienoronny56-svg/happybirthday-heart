@@ -36,24 +36,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainContent = document.getElementById('main-content');
     const bgMusic = document.getElementById('bg-music');
 
-    const startMusic = () => {
+    const startMusic = (source) => {
+        if (!bgMusic) return;
+        
+        console.log(`Music play request from: ${source}`);
         bgMusic.play().then(() => {
             console.log("Music started successfully");
-            window.removeEventListener('click', startMusic);
-            window.removeEventListener('touchstart', startMusic);
+            // Clean up window listeners once playing
+            window.removeEventListener('click', startMusicListener);
+            window.removeEventListener('touchstart', startMusicListener);
         }).catch(e => {
-            console.log("Autoplay still blocked or failed:", e);
+            if (e.name === 'AbortError') {
+                console.log("Music play interrupted, this is expected if multiple triggers occur.");
+            } else {
+                console.error("Autoplay still blocked or failed:", e);
+            }
         });
     };
 
+    const startMusicListener = () => startMusic('Global Interaction');
+
     // Listen on window for any interaction
-    window.addEventListener('click', startMusic, { once: false });
-    window.addEventListener('touchstart', startMusic, { once: false });
+    window.addEventListener('click', startMusicListener, { once: false });
+    window.addEventListener('touchstart', startMusicListener, { once: false });
 
     // Handle initial loading
     bgMusic.load();
     bgMusic.addEventListener('error', (e) => {
-        console.error("Audio failed to load:", e);
+        console.error("Audio failed to load from local source:", e);
     });
 
     // 4. Start Button Click
@@ -62,8 +72,8 @@ document.addEventListener('DOMContentLoaded', () => {
             landing.classList.add('fade-out');
             mainContent.classList.remove('hidden');
             
-            // Ensure music plays if it hasn't already
-            bgMusic.play().catch(e => console.log("Music play issue:", e));
+            // Explicitly trigger music on primary button click
+            startMusic('Start Button');
 
             setTimeout(() => {
                 landing.style.display = 'none';
