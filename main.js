@@ -37,12 +37,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const bgMusic = document.getElementById('bg-music');
 
     const startMusic = () => {
-        bgMusic.play().catch(e => console.log("Autoplay blocked:", e));
-        window.removeEventListener('click', startMusic);
-        window.removeEventListener('touchstart', startMusic);
+        bgMusic.play().then(() => {
+            console.log("Music started successfully");
+            window.removeEventListener('click', startMusic);
+            window.removeEventListener('touchstart', startMusic);
+        }).catch(e => {
+            console.log("Autoplay still blocked or failed:", e);
+        });
     };
-    window.addEventListener('click', startMusic);
-    window.addEventListener('touchstart', startMusic);
+
+    // Listen on window for any interaction
+    window.addEventListener('click', startMusic, { once: false });
+    window.addEventListener('touchstart', startMusic, { once: false });
+
+    // Handle initial loading
+    bgMusic.load();
+    bgMusic.addEventListener('error', (e) => {
+        console.error("Audio failed to load:", e);
+    });
 
     // 4. Start Button Click
     if (startBtn) {
