@@ -36,20 +36,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainContent = document.getElementById('main-content');
     const bgMusic = document.getElementById('bg-music');
 
+    let musicStarted = false;
     const startMusic = (source) => {
-        if (!bgMusic) return;
+        if (!bgMusic || musicStarted) return;
         
         console.log(`Music play request from: ${source}`);
+        musicStarted = true; // Set flag immediately to prevent re-entry
+        
         bgMusic.play().then(() => {
             console.log("Music started successfully");
+            bgMusic.volume = 0.5;
             // Clean up window listeners once playing
             window.removeEventListener('click', startMusicListener);
             window.removeEventListener('touchstart', startMusicListener);
         }).catch(e => {
-            if (e.name === 'AbortError') {
-                console.log("Music play interrupted, this is expected if multiple triggers occur.");
+            musicStarted = false; // Reset flag so we can try again on next interaction
+            if (e.name === 'NotAllowedError') {
+                console.warn("Autoplay blocked. Waiting for further interaction.");
+            } else if (e.name === 'AbortError') {
+                console.log("Music play interrupted. This is fine.");
             } else {
-                console.error("Autoplay still blocked or failed:", e);
+                console.error("Music playback failed:", e);
             }
         });
     };
@@ -57,8 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const startMusicListener = () => startMusic('Global Interaction');
 
     // Listen on window for any interaction
-    window.addEventListener('click', startMusicListener, { once: false });
-    window.addEventListener('touchstart', startMusicListener, { once: false });
+    window.addEventListener('click', startMusicListener);
+    window.addEventListener('touchstart', startMusicListener);
 
     // Handle initial loading
     bgMusic.load();
