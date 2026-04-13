@@ -30,11 +30,45 @@ document.addEventListener('DOMContentLoaded', () => {
      // Sunflower Petal Rain
      spawnSunflowerPetals();
 
-    // 4. Start Button Click
+    // Handle Music Autoplay (Trigger on first interaction)
     const landing = document.getElementById('landing');
     const startBtn = document.getElementById('start-btn');
     const mainContent = document.getElementById('main-content');
     const bgMusic = document.getElementById('bg-music');
+
+    const startMusic = () => {
+        bgMusic.play().catch(e => console.log("Autoplay blocked:", e));
+        window.removeEventListener('click', startMusic);
+        window.removeEventListener('touchstart', startMusic);
+    };
+    window.addEventListener('click', startMusic);
+    window.addEventListener('touchstart', startMusic);
+
+    // 4. Start Button Click
+    if (startBtn) {
+        startBtn.addEventListener('click', () => {
+            landing.classList.add('fade-out');
+            mainContent.classList.remove('hidden');
+            
+            // Ensure music plays if it hasn't already
+            bgMusic.play().catch(e => console.log("Music play issue:", e));
+
+            setTimeout(() => {
+                landing.style.display = 'none';
+                lenis.scrollTo(0); // Reset scroll
+                
+                // Trigger entry animations with stagger
+                gsap.from('.chapter-content', { 
+                    opacity: 0, 
+                    y: 50, 
+                    duration: 1.2, 
+                    stagger: 0.3,
+                    ease: 'power3.out' 
+                });
+            }, 1000);
+        });
+    }
+
     const noBtn = document.getElementById('no-btn');
     let noBtnAttempts = 0;
 
