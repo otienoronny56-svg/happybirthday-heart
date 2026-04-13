@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const tl = gsap.timeline();
     tl.to('.elegant-text', { opacity: 1, y: 0, duration: 1.5, delay: 0.5, ease: 'power4.out' })
       .to('.sub-text', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, "-=0.8")
-      .to('.cake-sticker', { opacity: 1, x: -300, rotation: 10, duration: 1.5, ease: 'power2.out' }, "-=1")
+      .to('.cake-sticker', { opacity: 1, duration: 1.5, ease: 'power2.out' }, "-=1")
       .to('.fluid-btn', { opacity: 1, scale: 1, duration: 1, ease: 'back.out(1.7)' }, "-=0.5")
       .to('.secondary-btn', { opacity: 1, scale: 1, duration: 1, ease: 'back.out(1.7)' }, "-=0.8");
  
